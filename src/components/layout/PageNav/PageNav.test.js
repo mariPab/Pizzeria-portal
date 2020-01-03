@@ -8,8 +8,6 @@ describe('Component PageNav', () => {
     expect(shallow(<PageNav />)).toBeTruthy();
   });
   it('renders Buttons', () => {
-    const wrapper = shallow(<PageNav />);
-    console.debug(wrapper);
-    expect(wrapper.find(Button).length).toEqual(5);
+    expect(shallow(<PageNav />).find(Button).length).toEqual(5);
   });
 });
