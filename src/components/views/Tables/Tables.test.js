@@ -8,6 +8,6 @@ describe('Component Tables', () => {
   });
   it('renders Links', () => {
     const wrapper = shallow(<Tables />);
-    expect(wrapper.find('Link').length).toEqual(4);
+    expect(wrapper.find('Link').length).toEqual(2);
   });
 });

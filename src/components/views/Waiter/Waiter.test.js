@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Waiter from './Waiter';
+import Button from '@material-ui/core/Button';
 
 describe('Component Waiter', () => {
   it('renders without crashing', () => {
@@ -8,6 +9,6 @@ describe('Component Waiter', () => {
   });
   it('renders Links', () => {
     const wrapper = shallow(<Waiter />);
-    expect(wrapper.find('Link').length).toEqual(2);
+    expect(wrapper.find(Button).length).toEqual(1);
   });
 });
