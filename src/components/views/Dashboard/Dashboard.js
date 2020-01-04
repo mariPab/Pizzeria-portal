@@ -2,6 +2,18 @@ import React from 'react';
 import styles from './Dashboard.scss';
 import CustomTable from '../../common/CustomTable/CustomTable';
 
+const orderStatisticsColumns = [
+  {title: 'Order ID', field: 'orderId'},
+  {title: 'Order Value', field: 'value'},
+];
+
+const orderStatisticsData = [
+  {orderId: 2, value: 55},
+  {orderId: 3, value: 130},
+  {orderId: 4, value: 80},
+  {orderId: 5, value: 45},
+];
+
 const tableBookingColumns = [
   {title: 'Name', field: 'name'},
   {title: 'Phone', field: 'phone'},
@@ -21,6 +33,12 @@ const tableBookingData = [
 const Dashboard = () => (
   <div className={styles.component}>
     <h2>Dashboard</h2>
+    <CustomTable
+      columns={orderStatisticsColumns}
+      data={orderStatisticsData}
+      title={'Order Statistics'}
+      editable={false}
+    />
     <CustomTable
       columns={tableBookingColumns}
       data={tableBookingData}

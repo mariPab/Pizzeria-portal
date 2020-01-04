@@ -7,6 +7,6 @@ describe('Component Dashboard', () => {
     expect(shallow(<Dashboard />)).toBeTruthy();
   });
   it('renders CustomTable', () => {
-    expect(shallow(<Dashboard />).find('CustomTable').length).toEqual(1);
+    expect(shallow(<Dashboard />).find('CustomTable').length).toEqual(2);
   });
 });
