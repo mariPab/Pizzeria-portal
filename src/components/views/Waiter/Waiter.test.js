@@ -9,6 +9,6 @@ describe('Component Waiter', () => {
   });
   it('renders Links', () => {
     const wrapper = shallow(<Waiter />);
-    expect(wrapper.find(Button).length).toEqual(1);
+    expect(wrapper.find(Button).length).toEqual(9);
   });
 });
