@@ -13,9 +13,6 @@ import Button from '@material-ui/core/Button';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 
-import NewOrder from '../NewOrder/NewOrder';
-import Order from '../Order/Order';
-
 class Waiter extends React.Component {
   static propTypes = {
     fetchTables: PropTypes.func,
@@ -24,6 +21,7 @@ class Waiter extends React.Component {
       error: PropTypes.oneOfType([PropTypes.bool,PropTypes.string]),
     }),
     tables: PropTypes.array,
+    updateStatus: PropTypes.func,
   }
 
   componentDidMount() {
@@ -31,7 +29,9 @@ class Waiter extends React.Component {
     fetchTables();
   }
 
-  renderActions (status) {
+  renderActions (orderId, status) {
+    const { updateStatus, tables } = this.props;
+    console.log(tables);
     switch (status) {
       case 'free':
         return (
@@ -62,16 +62,17 @@ class Waiter extends React.Component {
         );
       case 'paid':
         return (
-          <Button color="secondary" variant="contained">free</Button>
+          <Button onClick={() => updateStatus(orderId, 'free')} color="secondary" variant="contained">free</Button>
         );
       default:
         return null;
     }
   }
 
+
   render() {
     const { loading: { active, error }, tables } = this.props;
-
+    console.log(tables);
     if(active || !tables.length) {
       return (
         <Paper className={styles.component}>
@@ -114,7 +115,7 @@ class Waiter extends React.Component {
                     )}
                   </TableCell>
                   <TableCell>
-                    {this.renderActions(row.status)}
+                    {this.renderActions(row.id, row.status)}
                   </TableCell>
                 </TableRow>
               ))}
