@@ -10,10 +10,33 @@ import Booking from '../Booking/Booking';
 import NewEvent from '../NewEvent/NewEvent';
 import Event from '../Event/Event';
 
+import Paper from '@material-ui/core/Paper';
+import { ViewState }  from '@devexpress/dx-react-scheduler';
+import { Scheduler, DayView, Appointments, AppointmentTooltip, DateNavigator, TodayButton, Toolbar } from '@devexpress/dx-react-scheduler-material-ui';
+
 const Tables = () => (
   <div className={styles.component}>
     <h2>Tables View</h2>
     <h3>Bookings</h3>
+
+    <Paper>
+      <Scheduler
+        // data={data}
+      >
+        <ViewState
+          defaultCurrentDate="2018-07-27"/>
+        <DayView
+          startDayHour={12}
+          endDayHour={24}
+        />
+        <Toolbar />
+        <DateNavigator />
+        <TodayButton />
+        <Appointments />
+        <AppointmentTooltip />
+      </Scheduler>
+    </Paper>
+
     <Link to={`${process.env.PUBLIC_URL}/tables/booking/146dg`}>Booking details</Link>
     <Fab color='secondary' aria-label='add' component={Link} to={`${process.env.PUBLIC_URL}/tables/booking/new`}>
       <AddIcon />
