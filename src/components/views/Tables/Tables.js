@@ -17,14 +17,14 @@ import { Scheduler, DayView, Appointments, AppointmentTooltip, DateNavigator, To
 const Tables = () => (
   <div className={styles.component}>
     <h2>Tables View</h2>
-    <h3>Bookings</h3>
+    <h3>Bookings & events</h3>
 
     <Paper>
       <Scheduler
         // data={data}
       >
         <ViewState
-          defaultCurrentDate="2018-07-27"/>
+          defaultCurrentDate={new Date()}/>
         <DayView
           startDayHour={12}
           endDayHour={24}
