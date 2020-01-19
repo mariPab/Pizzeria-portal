@@ -20,7 +20,7 @@ const UPDATE_STATUS = createActionName('UPDATE_STATUS');
 export const fetchStarted = payload => ({ payload, type: FETCH_START });
 export const fetchSuccess = payload => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = payload => ({ payload, type: FETCH_ERROR });
-export const updateStatus = payload => ({ payload, type: UPDATE_STATUS });
+export const updateStatus = (id, status) => ({ id, status, type: UPDATE_STATUS });
 
 
 /* thunk creators */
@@ -44,12 +44,9 @@ export const fetchUpdate = (tableId, newStatus) => {
     dispatch(fetchStarted());
 
     Axios
-      .post(`${api.url}/${api.tables}`,{
-        // id: tableId,
-        status: newStatus,
-      })
-      .then(res => {
-        dispatch(updateStatus());
+      .post(`${api.url}/${api.tables}`)
+      .then(() => {
+        dispatch(updateStatus(tableId, newStatus));
       })
       .catch(err => {
         dispatch(fetchError(err.message || true));
@@ -88,17 +85,16 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case UPDATE_STATUS: {
-      console.log(action.payload); // powinine byc string z nowym statusem
       return {
         ...statePart,
         loading: {
           active: false,
           error: false,
         },
-        data: {
-          ...statePart.data,
-          status: action.payload.data.status,
-        },
+        data: statePart.data.map(order => order.id === action.id ?
+          {...order, status: action.status} :
+          order
+        ),
       };
     }
     default:
