@@ -30,13 +30,12 @@ class Waiter extends React.Component {
   }
 
   renderActions (orderId, status) {
-    const { updateStatus, tables } = this.props;
-    console.log(tables);
+    const { updateStatus } = this.props;
     switch (status) {
       case 'free':
         return (
           <>
-            <Button color="secondary" variant="contained">thinking</Button>
+            <Button onClick={() => updateStatus(orderId, 'thinking')} color="secondary" variant="contained">thinking</Button>
             <Fab size="small" color='secondary' aria-label='add' component={Link} to={`${process.env.PUBLIC_URL}/waiter/order/new`}>
               <AddIcon />
             </Fab>
@@ -50,15 +49,15 @@ class Waiter extends React.Component {
         );
       case 'ordered':
         return (
-          <Button color="secondary" variant="contained">prepared</Button>
+          <Button onClick={() => updateStatus(orderId, 'prepared')} color="secondary" variant="contained">prepared</Button>
         );
       case 'prepared':
         return (
-          <Button color="secondary" variant="contained">delivered</Button>
+          <Button onClick={() => updateStatus(orderId, 'delivered')} color="secondary" variant="contained">delivered</Button>
         );
       case 'delivered':
         return (
-          <Button color="secondary" variant="contained">paid</Button>
+          <Button onClick={() => updateStatus(orderId, 'paid')} color="secondary" variant="contained">paid</Button>
         );
       case 'paid':
         return (
