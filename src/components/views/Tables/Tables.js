@@ -14,6 +14,14 @@ import Paper from '@material-ui/core/Paper';
 import { ViewState }  from '@devexpress/dx-react-scheduler';
 import { Scheduler, DayView, Appointments, AppointmentTooltip, DateNavigator, TodayButton, Toolbar } from '@devexpress/dx-react-scheduler-material-ui';
 
+const data = [
+  { startDate: '2020-01-28 15:00', endDate: '2020-01-28 16:00', title: 'John Smith, table 1' },
+  { startDate: '2020-01-28 18:00', endDate: '2020-01-28 19:30', title: 'Andrea Sun, table 2' },
+  { startDate: '2020-01-28 14:00', endDate: '2020-01-28 16:00', title: 'Lesley Nilson, table 3' },
+  { startDate: '2020-01-28 15:00', endDate: '2020-01-28 17:30', title: 'Miranda Ball, table 2' },
+  { startDate: '2020-01-28 19:00', endDate: '2020-01-28 20:30', title: 'Carl Fischer, table 1' },
+];
+
 const Tables = () => (
   <div className={styles.component}>
     <h2>Tables View</h2>
@@ -21,7 +29,7 @@ const Tables = () => (
 
     <Paper>
       <Scheduler
-        // data={data}
+        data={data}
       >
         <ViewState
           defaultCurrentDate={new Date()}/>
